@@ -1,0 +1,23 @@
+/**
+ * src/styles/settings.scss
+ *
+ * Configures SASS variables and Vuetify overwrites
+ */
+
+// https://vuetifyjs.com/features/sass-variables/`
+// @use 'vuetify/settings' with (
+//   $color-pack: false
+// );
+
+.b-content {
+    padding-left: 20px;
+    padding-right: 20px;
+    max-width: 500px;
+    margin: auto;
+    padding-bottom: 20px;
+}
+
+*,
+.inter {
+    font-family: "Inter", "Noto Sans SC", sans-serif !important;
+}
