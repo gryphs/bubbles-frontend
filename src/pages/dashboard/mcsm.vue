@@ -11,7 +11,7 @@
                     </div>
                     <img src="@/assets/god.jpg" style="width: 100%; display: block;" class="mb-4">
                     <p class="text-h5">高级控制台</p>
-                    <p class="text-grey my-1">访问高级控制台，对您的服务器做更深入的操作。
+                    <p class="text-grey my-1">访问控制台，对您的服务器做更深入的操作。
                     </p>
                     <p class="my-2"><v-chip prepend-icon="mdi-check" color="green" class="ma-1">查看服务器后台
                         </v-chip><v-chip prepend-icon="mdi-check" color="green" class="ma-1">添加模组、查看存档和其他文件

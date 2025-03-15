@@ -16,7 +16,7 @@
                     <img src="@/assets/giveop.jpg" style="width: 100%; display: block;" class="mb-4">
                     <p class="text-h6">钦定游戏内管理员（OP）</p>
                     <p class="mt-1 mb-4 text-grey">将你空余的神之力分给信任的人吧！<br />
-                        管理员拥有通过指令开服、关服在内的所有权限。</p>
+                        管理员拥有通过指令开关服、ban 玩家在内的所有权限。</p>
                     <div class="operation my-3">
                         <v-text-field clearable label="玩家名字" variant="outlined" v-model="input"></v-text-field>
                         <v-row no-gutters>

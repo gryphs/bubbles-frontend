@@ -26,7 +26,7 @@
       <v-card-text>
         <p class="text-center">image credit <a class="text-blue" href="https://www.pixiv.net/users/144415"
             style="text-decoration: none;">@さきの新月 (pixiv)</a></p>
-        <p class="text-center text-grey">Project Mizuiro</p>
+        <p class="text-center text-grey">Project Mizuiro 1.0</p>
       </v-card-text>
     </v-card>
   </div>

@@ -5,7 +5,7 @@
                 density="compact"></v-alert>
             <p class="text-center" style="font-size: 16px;">
                 请扫描进入公众号<br />
-                并向后台私信以下验证码以验证身份
+                并向后台私信以下验证码以验证身份<br />
                 辛苦啦
                 <span class="my-1 d-block"><v-chip v-if="pin == ''" color="grey">
                         正在获取中...

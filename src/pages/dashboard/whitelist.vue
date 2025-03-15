@@ -44,10 +44,9 @@
             <v-card class="setup-card settings-card mt-4">
                 <v-card-text>
                     <p class="my-1">您还可以通过游戏内命令管理白名单。命令如下：</p>
-                    <p class="my-1"><b>/whitelist list</b></p>
+                    <p class="my-1"><b>/cwhitelist list</b></p>
                     <p class="my-1">输入上述指令可以查看当前在白名单内的所有用户。然后您可以在本界面进行增删操作。</p>
-                    <p class="my-1"><b>/whitelist [on/off]</b></p>
-                    <p class="my-1">输入上述指令可以开放/关闭白名单功能。</p>
+                    <p class="my-1">如果您想关闭白名单，请删除 cwhitelist 模组。(在高级控制台中)</p>
                 </v-card-text>
             </v-card>
         </div>

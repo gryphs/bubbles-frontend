@@ -8,9 +8,9 @@
                 <p class="mb-4 text-grey-darken-2">这个名字会显示在MC的服务器列表里</p>
                 <v-text-field placeholder="我的服务器" variant="outlined" v-model="serverName"></v-text-field>
                 <v-text-field label="服主的游戏名字" variant="outlined" v-model="adminName"></v-text-field>
-                <p class="my-1 text-grey-darken-2"><span v-if="adminName == ''">玩家</span>
+                <p class="my-1 text-grey-darken-2"><span v-if="adminName == ''">你好，</span>
                     <span v-else-if="adminName.toLocaleLowerCase() == 'ash'">这只叫 {{ adminName }} 的猫猫</span>
-                    <span v-else>服主 {{ adminName }}&nbsp;</span>将成为MC的管理员。
+                    <span v-else>服主 {{ adminName }}&nbsp;</span>！
                 </p>
                 <v-btn class="w-100 mt-2" color="blue" @click="onFinish" :loading="this.loading">创建服务器</v-btn>
                 <p v-if="this.loading" class="mt-3 text-grey">服务器正在创建，可能会花费一点时间。</p>

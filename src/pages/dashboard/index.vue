@@ -111,7 +111,7 @@ export default {
                     prependIcon: 'mdi-chess-queen',
                 },
                 {
-                    title: '进入高级控制台',
+                    title: '进入控制台',
                     value: 3,
                     prependIcon: 'mdi-console',
                 },
