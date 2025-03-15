@@ -5,12 +5,16 @@
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint . --fix --ignore-path .gitignore"
+    "lint": "eslint . --fix --ignore-path .gitignore",
+    "deploy": "npx -y rth-host-helper@latest --site aquamc --build build --outdir dist"
   },
   "dependencies": {
     "@mdi/font": "7.0.96",
+    "@xmcl/modrinth": "^2.3.2",
     "axios": "^1.7.2",
+    "copy-to-clipboard": "^3.3.3",
     "core-js": "^3.34.0",
+    "marked": "^13.0.1",
     "md5": "^2.3.0",
     "roboto-fontface": "*",
     "vue": "^3.4.0",
@@ -29,7 +33,7 @@
     "unplugin-fonts": "^1.1.1",
     "unplugin-vue-components": "^0.26.0",
     "unplugin-vue-router": "^0.8.4",
-    "vite": "^5.1.5",
+    "vite": "^5.4.11",
     "vite-plugin-vuetify": "^2.0.3",
     "vue-router": "^4.3.0"
   }

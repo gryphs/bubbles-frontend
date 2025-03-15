@@ -2,7 +2,8 @@ import { apiFetch, getEndpoint } from "../api"
 const ENDPOINT_ROOT = '/people/human/'
 const ENDPOINT_LIST = 'list'
 const ENDPOINT_DETAIL = 'detail'
-const ENDPOINT_ENTRIES = 'entries'
+const ENDPOINT_STORIES = 'stories'
+const ENDPOINT_PROPERTIES = 'properties'
 
 /**
  * get the short list of humans.
@@ -28,8 +29,17 @@ export function getHumanDetail(uuid, callback_ok, vuethis) {
     )
 }
 
-export function getHumanEntryList(uuid, type, callback_ok, vuethis) {
-    apiFetch(ENDPOINT_ROOT + ENDPOINT_ENTRIES + "/" + uuid + "?type=" + type,
+export function getHumanStoryList(uuid, callback_ok, vuethis) {
+    apiFetch(ENDPOINT_ROOT + ENDPOINT_STORIES + "/" + uuid,
+        (json_data) => {
+            return callback_ok(json_data, vuethis);
+        },
+        () => {}
+    )
+}
+
+export function getHumanPropList(uuid, callback_ok, vuethis) {
+    apiFetch(ENDPOINT_ROOT + ENDPOINT_PROPERTIES + "/" + uuid,
         (json_data) => {
             return callback_ok(json_data, vuethis);
         },

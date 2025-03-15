@@ -2,7 +2,7 @@ import axios from "axios";
 import md5 from "md5";
 
 
-const API_PREFIX = "https://mock.apipark.cn/m1/4733915-4386511-default";
+export const API_PREFIX = "https://app.mizuiro.xyz/";
 const STRICT_JSON = true;
 
 export function getEndpoint(endpoint) {
@@ -14,7 +14,7 @@ function catchNonJSONError() {
 }
 
 function catchJavaScriptError(error) {
-    console.error("An javascript error is caught by bubbles:", error);
+    console.error("An javascript error is caught:", error);
 }
 
 /**
@@ -27,23 +27,15 @@ function catchJavaScriptError(error) {
 export function apiFetch(
     endpoint,
     then_callback,
-    finally_callback
+    finally_callback = ()=>{}
 ) {
     let url = getEndpoint(endpoint);
-    axios.get(url)
+    axios.get(url, {withCredentials: true})
         .then(function (response) {
             // check if response is json
-            if((typeof response.data) == 'object') {
-                // is json
-                // generate cache
-                window.localStorage.setItem("cache_" + md5(endpoint), JSON.stringify(response.data));
-            } else {
-                // is text
-                // if json format is strictly required, then non-json contents will cause a Exception.
+            if((typeof response.data) != 'object') {
                 if(STRICT_JSON) {
                     return catchNonJSONError();
-                } else {
-                    window.localStorage.setItem("cache_" + md5(endpoint), response.data);
                 }
             }
             // fire callback

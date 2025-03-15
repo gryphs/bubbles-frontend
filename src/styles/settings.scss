@@ -12,12 +12,24 @@
 .b-content {
     padding-left: 20px;
     padding-right: 20px;
-    max-width: 500px;
+    max-width: 600px;
     margin: auto;
     padding-bottom: 20px;
+}
+
+.b-search-show {
+    display: block;
+}
+.b-search-hide {
+    display: none;
 }
 
 *,
 .inter {
     font-family: "Inter", "Noto Sans SC", sans-serif !important;
+}
+
+html {
+    overflow-y: auto !important;
+    overflow-x: auto !important;
 }

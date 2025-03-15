@@ -1,0 +1,39 @@
+.setup-card {
+    max-width: 500px;
+    min-width: 300px;
+    margin: 0 auto;
+    padding: 10px 20px !important;
+    user-select: none;
+}
+
+.setup-card-np {
+    max-width: 500px;
+    min-width: 300px;
+    margin: 0 auto;
+}
+
+.settings-card {
+    padding: 5px 10px !important;
+}
+
+@media screen and (max-width: 600px) {
+    .setup-card {
+        max-width: 500px;
+        min-width: 300px;
+        margin: 0 auto;
+        padding: 2px 2px !important;
+        user-select: none;
+    }
+}
+
+.v-main {
+    padding-top: 40px !important;
+    background-image: url(@/assets/background_blue.jpg);
+    background-size: cover;
+    background-position: 50% 50%;
+    background-attachment: fixed;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 40px !important;
+    overflow-x: auto;
+}
