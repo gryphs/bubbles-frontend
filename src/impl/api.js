@@ -15,6 +15,7 @@ function catchNonJSONError() {
 
 function catchJavaScriptError(error) {
     console.error("An javascript error is caught:", error);
+    alert("对不起 (>人<；)\n发生运行时错误，请截图联系管理员。详情：\n" + error);
 }
 
 /**

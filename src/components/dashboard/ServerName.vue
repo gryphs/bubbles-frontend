@@ -9,9 +9,10 @@
                 <p class="m-0 text-grey">属于你的「{{ serverName }}」</p>
                 <p class="text-h6">欢迎回来，{{ adminName }}</p>
                 <v-divider class="border-opacity-75 my-4" color="info"></v-divider>
-                <p class="text-h6 text-blue"><code @click="copyAddress()" style="cursor: pointer; user-select: text;">{{ serverAddress }}
-                <v-tooltip activator="parent" location="bottom" v-if="!disableCopy">点击以复制</v-tooltip>
-            </code>
+                <p class="text-h6 text-blue">
+                    <code @click="copyAddress()" style="cursor: pointer; user-select: text;">{{ (serverAddress=='')?'服务器IP':serverAddress }}
+                        <v-tooltip activator="parent" location="bottom" v-if="!disableCopy">点击以复制</v-tooltip>
+                    </code>
                     <v-chip class="ms-2" density="comfortable" size="small" :prepend-icon="chipIcon" :color="chipColor"
                         @click="$emit('refreshStatus')">
                         {{ chipMessage }}
@@ -93,9 +94,9 @@ export default {
     },
     methods: {
         copyAddress() {
-            if(this.disableCopy) return;
+            if (this.disableCopy) return;
             let result = copy(this.serverAddress);
-            if(result) {
+            if (result) {
                 this.snakebar.msg = "IP 复制到剪贴板成功";
                 this.snakebar.color = "green";
                 this.snakebar.toggle = true;
@@ -105,7 +106,7 @@ export default {
                 this.snakebar.color = "orange";
                 this.snakebar.toggle = true;
             }
-            
+
         }
     }
 }

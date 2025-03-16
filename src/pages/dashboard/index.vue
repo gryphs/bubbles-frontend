@@ -60,16 +60,16 @@ export default {
         }
 
 
-        Power("status", this.input, (data, vuethis) => {
-            vuethis.status = data['result']['status'];
-        }, this);
+        this.reloadStatus();
     },
     methods: {
         reloadStatus() {
             this.status = 4;
             Power("status", null, (data, vuethis) => {
                 vuethis.status = data['result']['status'];
+                localStorage.setItem("lastStatus", vuethis.status);
             }, this);
+            
         },
         menuClick(a) {
             switch (a) {
@@ -88,7 +88,7 @@ export default {
             }
         },
         helpCheck() {
-            window.open("/publish/help-minecraft?userid=" + this.userID);
+            window.open("https://publish.pvpin.org/publish/help-minecraft?userid=" + this.userID);
         }
     },
     data() {

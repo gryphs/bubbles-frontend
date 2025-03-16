@@ -14,6 +14,7 @@
                         </v-btn>
                     </div>
                     <img src="@/assets/friends.jpg" style="width: 100%; display: block;" class="mb-4">
+                    
                     <p class="text-h6">白名单</p>
                     <p class="mt-1 mb-4 text-grey">将彼此的名字刻入白名单，让星空见证这一切。<br />
                         服务器创建后默认开启白名单，只有白名单用户才能进入游戏。
@@ -65,6 +66,12 @@ export default {
                 this.snakebar.toggle = true;
                 return;
             }
+            if(this.isStoppedServer()) {
+                this.snakebar.msg = "请开服以后再执行此操作";
+                this.snakebar.color = "orange";
+                this.snakebar.toggle = true;
+                return;
+            }
             this.loading_add = true;
             Power("addwl", this.input, (data, vuethis) => {
                 vuethis.snakebar.msg = "操作成功提交~";
@@ -80,6 +87,12 @@ export default {
                 this.snakebar.toggle = true;
                 return;
             }
+            if(this.isStoppedServer()) {
+                this.snakebar.msg = "请开服以后再执行此操作";
+                this.snakebar.color = "orange";
+                this.snakebar.toggle = true;
+                return;
+            }
             this.loading_remove = true;
             Power("removewl", this.input, (data, vuethis) => {
                 vuethis.snakebar.msg = "操作成功提交~";
@@ -87,6 +100,9 @@ export default {
                 vuethis.snakebar.toggle = true;
                 vuethis.loading_remove = false;
             }, this);
+        },
+        isStoppedServer() {
+            return (!localStorage.getItem("lastStatus") || localStorage.getItem("lastStatus") == '0');
         }
     },
     data() {
@@ -101,6 +117,5 @@ export default {
             input: ""
         };
     },
-
 };
 </script>
