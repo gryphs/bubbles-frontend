@@ -13,41 +13,27 @@
                             返回
                         </v-btn>
                     </div>
-                    <img src="@/assets/friends.jpg" style="width: 100%; display: block;" class="mb-4">
-                    
-                    <p class="text-h6">白名单</p>
-                    <p class="mt-1 mb-4 text-grey">将彼此的名字刻入白名单，让星空见证这一切。<br />
-                        服务器创建后默认开启白名单，只有白名单用户才能进入游戏。
-                    </p>
-
-                    <div class="operation my-3">
+                    <img src="@/assets/heaven.jpg" style="width: 100%; display: block;" class="mb-4">
+                    <p class="text-h6">向玩家降下天罚</p>
+                    <div class="my-2">
+                        <p class="text-grey mb-3">请输入玩家名字：</p>
                         <v-text-field clearable label="玩家名字" variant="outlined" v-model="input"></v-text-field>
-                        <v-row no-gutters>
-                            <v-col class="mr-2">
-                                <v-sheet>
-                                    <v-btn class="w-100" prepend-icon="mdi-plus" variant="tonal" color="green" @click="clickAdd()" :loading="loading_add">
-                                        添加
-                                    </v-btn>
-                                </v-sheet>
-                            </v-col>
-                            <v-col>
-                                <v-sheet>
-                                    <v-btn class="w-100" prepend-icon="mdi-close" variant="tonal" color="red" @click="clickRemove()" :loading="loading_remove">
-                                        从白名单中删除
-                                    </v-btn>
-                                </v-sheet>
-                            </v-col>
-                        </v-row>
                     </div>
-                </v-card-text>
-            </v-card>
-
-            <v-card class="setup-card settings-card mt-4">
-                <v-card-text>
-                    <p class="my-1">您还可以通过游戏内命令管理白名单。命令如下：</p>
-                    <p class="my-1"><b>/cwhitelist list</b></p>
-                    <p class="my-1">输入上述指令可以查看当前在白名单内的所有用户。然后您可以在本界面进行增删操作。</p>
-                    <p class="my-1">如果您想关闭白名单，请删除 <b>cwhitelist</b> 模组。(在高级控制台中)</p>
+                    <div class="operation mt-1">
+                        <p class="text-grey mb-3">可用的天罚：</p>
+                        <v-list lines="two" style="margin: 0; padding: 0;">
+                            <v-list-item style="margin: 0; padding: 0; margin-top: 5px; margin-bottom: 5px;"
+                                v-for="h in heavens" :key="h.key" :subtitle="h.subtitle" :title="h.title">
+                                <template v-slot:append>
+                                    <v-btn color="green-lighten-1" icon="mdi-magic-staff" variant="tonal" class="ms-2"
+                                        @click="clickHeaven(h.key, true)">
+                                        </v-btn>
+                                    <v-btn color="red-lighten-1" icon="mdi-minus" variant="tonal" class="ms-2" :disabled="!h.cancellable"
+                                        @click="clickHeaven(h.key, false)"></v-btn>
+                                </template>
+                            </v-list-item>
+                        </v-list>
+                    </div>
                 </v-card-text>
             </v-card>
         </div>
@@ -73,7 +59,7 @@ export default {
                 return;
             }
             this.loading_add = true;
-            Power("addwl", this.input, (data, vuethis) => {
+            Power("addop", this.input, (data, vuethis) => {
                 vuethis.snakebar.msg = "操作成功提交~";
                 vuethis.snakebar.color = "green";
                 vuethis.snakebar.toggle = true;
@@ -94,7 +80,7 @@ export default {
                 return;
             }
             this.loading_remove = true;
-            Power("removewl", this.input, (data, vuethis) => {
+            Power("deop", this.input, (data, vuethis) => {
                 vuethis.snakebar.msg = "操作成功提交~";
                 vuethis.snakebar.color = "green";
                 vuethis.snakebar.toggle = true;
@@ -107,15 +93,43 @@ export default {
     },
     data() {
         return {
-            loading_add: false,
-            loading_remove: false,
+            input: "",
             snakebar: {
                 color: "",
                 msg: "",
-                toggle: false,
+                toggle: false
             },
-            input: ""
+            heavens: [
+                {
+                    key: "kick",
+                    cancellable: false,
+                    title: "踢出游戏",
+                    subtitle: "踢出玩家（显示连接中断）"
+                },
+                {
+                    key: "ban",
+                    cancellable: true,
+                    title: "封禁玩家",
+                    subtitle: "封禁该玩家"
+                },
+                {
+                    key: "blind",
+                    cancellable: true,
+                    title: "无限失明",
+                    subtitle: "给予该玩家无限失明效果，需要点击减号取消。"
+                },
+                {
+                    key: "ban",
+                    cancellable: true,
+                    title: "无限缓慢",
+                    subtitle: "给予该玩家无限缓慢效果，需要点击减号取消。"
+                },
+            ]
         };
     },
+    computed: {
+        
+    }
+
 };
 </script>

@@ -1,25 +1,31 @@
 <template>
     <div>
-        <v-dialog
-      v-model="kill.dialog"
-      max-width="500"
-      persistent
-    >
-      <v-card
-        text="如果强制关闭的话，服务器将不会保存存档，还可能会导致文件损坏。请仅在服务器无法关闭或者出现问题时才这么做。"
-        title="真的要强制给服务器拔电源吗？"
-      >
-        <template v-slot:actions>
-          <v-spacer></v-spacer>
-          <v-btn color="red-darken-1" @click="() => { kill.dialog = false; onMethod('kill'); }">
-            确认强制关闭
-          </v-btn>
-          <v-btn color="grey" @click="kill.dialog = false">
-            取消并返回
-          </v-btn>
-        </template>
-      </v-card>
-    </v-dialog>
+        <v-dialog v-model="shutdown.dialog" max-width="300">
+            <v-card text="真的要关闭服务器吗？">
+                <template v-slot:actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="orange-darken-1" @click="() => { shutdown.dialog = false; onMethod('stop'); }">
+                        确认关闭服务器
+                    </v-btn>
+                    <v-btn color="grey" @click="shutdown.dialog = false">
+                        取消并返回
+                    </v-btn>
+                </template>
+            </v-card>
+        </v-dialog>
+        <v-dialog v-model="kill.dialog" max-width="500" persistent>
+            <v-card text="如果强制关闭的话，服务器将不会保存存档，还可能会导致文件损坏。请仅在服务器无法关闭或者出现问题时才这么做。" title="真的要强制拔电源吗？">
+                <template v-slot:actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="red-darken-1" @click="() => { kill.dialog = false; onMethod('kill'); }">
+                        确认强制关闭
+                    </v-btn>
+                    <v-btn color="grey" @click="kill.dialog = false">
+                        取消并返回
+                    </v-btn>
+                </template>
+            </v-card>
+        </v-dialog>
         <v-snackbar :timeout="2000" v-model="snakebar.toggle" :color="snakebar.color">
             {{ snakebar.msg }}
         </v-snackbar>
@@ -37,7 +43,7 @@
                     <v-col>
                         <v-sheet class="me-2">
                             <v-btn prepend-icon="mdi-power-plug-off-outline" color="orange" class="w-100"
-                                @click="onMethod('stop')" :loading="loading.stop">
+                                @click="shutdown.dialog = true" :loading="loading.stop">
                                 关闭
                             </v-btn>
                         </v-sheet>
@@ -46,7 +52,7 @@
                         <v-sheet>
                             <v-btn prepend-icon="mdi-power-socket-us" color="red-darken-1" class="w-100"
                                 @click="kill.dialog = true" :loading="loading.kill">
-                                强制拔电源
+                                拔电源
                             </v-btn>
                         </v-sheet>
                     </v-col>
@@ -94,6 +100,9 @@ export default {
                 toggle: false,
             },
             kill: {
+                dialog: false
+            },
+            shutdown: {
                 dialog: false
             }
         }

@@ -13,7 +13,7 @@
                             返回
                         </v-btn>
                     </div>
-                    <img src="@/assets/giveop.jpg" style="width: 100%; display: block;" class="mb-4">
+                    <img src="@/assets/op-new.jpg" style="width: 100%; display: block;" class="mb-4">
                     <p class="text-h6">钦定游戏内管理员（OP）</p>
                     <p class="mt-1 mb-4 text-grey">将你的神之力分给信任的人吧！<br />
                         管理员拥有通过指令开关服、ban 玩家在内的所有权限。</p>
@@ -100,7 +100,7 @@ export default {
             }, this);
         },
         isStoppedServer() {
-            return (!localStorage.getItem("lastStatus") || localStorage.getItem("lastStatus") == '0');
+            return (!localStorage.getItem("lastStatus") || localStorage.getItem("lastStatus") != '3');
         }
     },
     data() {

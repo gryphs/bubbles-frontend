@@ -1,0 +1,13 @@
+[
+    {
+        "title": "原版",
+        "subtitle": "仅添加了优化服务器性能的部分模组，完全原版体验。",
+        "id": "vanilla",
+        "img_src": ""
+    },
+    {
+        "title": "暮色森林",
+        "subtitle": "添加了暮色森林模组。",
+        "id": "twilight_forest"
+    }
+]

@@ -8,7 +8,7 @@
                 <p class="mb-4 text-grey-darken-2">这个名字会显示在MC的服务器列表里</p>
                 <v-text-field placeholder="我的服务器" variant="outlined" v-model="serverName"></v-text-field>
                 <v-text-field label="服主的游戏名字" variant="outlined" v-model="adminName"></v-text-field>
-                <p class="my-1 text-grey-darken-2"><span v-if="adminName == ''">你好，</span>
+                <p class="my-1 text-grey-darken-2">您好，<span v-if="adminName == ''">服主</span>
                     <span v-else-if="adminName.toLocaleLowerCase() == 'ash'">这只叫 {{ adminName }} 的猫猫</span>
                     <span v-else>服主 {{ adminName }}&nbsp;</span>！
                 </p>

@@ -18,7 +18,7 @@
                         </v-chip><v-chip prepend-icon="mdi-check" color="green" class="ma-1">修改配置文件
                         </v-chip><v-chip prepend-icon="mdi-check" color="green" class="ma-1">设置定时执行任务
                         </v-chip></p>
-                    <div class="mt-4">
+                    <div class="my-4">
                         <p class="my-1">请复制下列「空间对接密钥」登录异世界的控制台：</p>
                         <p class="my-1">账号：<span style="user-select: text;">{{ adminName }}</span></p>
                         <p class="my-1">密码：<span style="user-select: text;">{{ password }}</span></p>
@@ -34,15 +34,17 @@
 </template>
 
 <script>
-import { getInstance } from '@/impl/utils';
+import { getInstance, redirectLogin } from '@/impl/utils';
 
 export default {
     created() {
+        redirectLogin(this);
         if (localStorage.getItem("adminName")) {
             this.adminName = localStorage.getItem("adminName");
             this.password = localStorage.getItem("password");
         }
         getInstance((data, vuethis) => {
+            if(data['code'] != 200) return;
             vuethis.adminName = data.adminName;
             vuethis.password = data.password;
             localStorage.setItem("adminName", data.adminName);

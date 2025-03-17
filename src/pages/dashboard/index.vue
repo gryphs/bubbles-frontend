@@ -7,12 +7,27 @@
 
             <ServerPower class="my-3" v-on:status-changed="reloadStatus()"></ServerPower>
             <v-card class="setup-card-np my-3">
-                <v-list ref="menuObj">
+                <v-list>
                     <v-list-item title="如何加入服务器" prepend-icon="mdi-help" @click="helpCheck()"></v-list-item>
                 </v-list>
             </v-card>
             <v-card class="setup-card-np my-3">
-                <v-list ref="menuObj">
+                <v-list>
+                    <v-list-subheader>玩家管理</v-list-subheader>
+                    <v-list-item v-for="item in playersItems" :title="item.title" :value="item.value"
+                        :prepend-icon="item.prependIcon" @click="menuClick(item.value)"></v-list-item>
+                </v-list>
+            </v-card>
+            <v-card class="setup-card-np my-3">
+                <v-list>
+                    <v-list-subheader>游戏性设置</v-list-subheader>
+                    <v-list-item v-for="item in ingameItems" :title="item.title" :value="item.value"
+                        :prepend-icon="item.prependIcon" @click="menuClick(item.value)"></v-list-item>
+                </v-list>
+            </v-card>
+            <v-card class="setup-card-np my-3">
+                <v-list>
+                    <v-list-subheader>高级设置</v-list-subheader>
                     <v-list-item v-for="item in settingsItems" :title="item.title" :value="item.value"
                         :prepend-icon="item.prependIcon" @click="menuClick(item.value)"></v-list-item>
                 </v-list>
@@ -32,7 +47,7 @@ export default {
         let localLastUpdated = localStorage.getItem("lastUpdated");
         if (localLastUpdated != null) {
             let cacheDeltaTime = (currentTS - parseInt(localLastUpdated));
-            cacheDeltaTime = Math.round(cacheDeltaTime/1000);
+            cacheDeltaTime = Math.round(cacheDeltaTime / 1000);
             console.log("cacheDeltaTime:", cacheDeltaTime);
             if (cacheDeltaTime <= 600) {
                 this.serverName = localStorage.getItem("serverName");
@@ -44,6 +59,7 @@ export default {
 
         if (this.serverName == '') {
             getInstance((data, vuethis) => {
+                if(!data) return;
                 vuethis.serverName = data.name;
                 vuethis.adminName = data.adminName;
                 vuethis.userID = data.userid;
@@ -56,7 +72,7 @@ export default {
                 console.log("API call to getInstance()");
             }, this);
         } else {
-            console.log("Bypassed internet API call. We have a cache " + Math.round((currentTS - parseInt(localLastUpdated))/1000) + "s ago");
+            console.log("Bypassed internet API call. We have a cache " + Math.round((currentTS - parseInt(localLastUpdated)) / 1000) + "s ago");
         }
 
 
@@ -69,7 +85,7 @@ export default {
                 vuethis.status = data['result']['status'];
                 localStorage.setItem("lastStatus", vuethis.status);
             }, this);
-            
+
         },
         menuClick(a) {
             switch (a) {
@@ -81,6 +97,21 @@ export default {
                     break;
                 case 3:
                     this.$router.push("/dashboard/mcsm");
+                    break;
+                case 4:
+                    this.$router.push("/dashboard/gamerule");
+                    break;
+                case 5:
+                    this.$router.push("/dashboard/instance_manage");
+                    break;
+                case 6:
+                    this.$router.push("/dashboard/bluemap");
+                    break;
+                case 7:
+                    this.$router.push("/dashboard/mods/modpack");
+                    break;
+                case 8:
+                    this.$router.push("/dashboard/staff_notes");
                     break;
                 default:
                     window.location.reload();
@@ -99,9 +130,9 @@ export default {
             userID: "",
             status: 4,
             selection: [],
-            settingsItems: [
+            playersItems: [
                 {
-                    title: '白名单设置',
+                    title: '白名单管理',
                     value: 1,
                     prependIcon: 'mdi-home-lock',
                 },
@@ -110,11 +141,40 @@ export default {
                     value: 2,
                     prependIcon: 'mdi-chess-queen',
                 },
+            ],
+            ingameItems: [
                 {
-                    title: '进入控制台',
+                    title: "游戏规则",
+                    value: 4,
+                    prependIcon: 'mdi-controller'
+                },
+                {
+                    title: "网页地图",
+                    value: 6,
+                    prependIcon: 'mdi-map'
+                },
+                {
+                    title: '安装整合包',
+                    value: 7,
+                    prependIcon: 'mdi-folder-move',
+                },
+                {
+                    title: '指令控制台/文件管理',
                     value: 3,
                     prependIcon: 'mdi-console',
                 },
+            ],
+            settingsItems: [
+                {
+                    title: '给 STAFF 备注',
+                    value: 8,
+                    prependIcon: 'mdi-sticker-outline',
+                },
+                {
+                    title: '高级服务器管理',
+                    value: 5,
+                    prependIcon: 'mdi-server',
+                }
             ]
         };
     },
